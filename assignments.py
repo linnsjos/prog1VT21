@@ -493,12 +493,37 @@ tal = intinput()
 print("du angav heltalet", tal)
 
 '''
+
+'''
 def intinput():
     while True:
         tal = input("Ange ett heltal: ")
-        if (tal.isdigit()):
+        if (tal.isdigit()) and 0<=tal=>9:
             return tal
         else:
             tal = input("Ange ett h\u0332e\u0332l\u0332t\u0332a\u0332l\u0332!: ")
 intinput()
 
+'''
+
+'''
+def intinput():
+    while True:
+        tal = input("Ange ett heltal mellan 0 och 9: ")
+        if (tal.isdigit()):
+            tal = int(tal)
+            if tal<=9:
+                return tal
+        else:
+            tal = input("Ange ett h\u0332e\u0332l\u0332t\u0332a\u0332l\u0332!: ")
+intinput()
+'''
+
+def emptyspaces():
+    emptyspace = []
+    for i in range(len(board)):
+        if board[i] =='':
+            print(str(i) + ' is empty') 
+            emptyspace.append((int)(str(i)))
+    print(emptyspace)
+emptyspaces()

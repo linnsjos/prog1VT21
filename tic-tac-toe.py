@@ -4,7 +4,7 @@ board = [' ',' ',' ',
          ' ',' ',' ',
          ' ',' ',' ']
 
-player = "O"
+player = "X"
 
 game = True
 
@@ -21,6 +21,7 @@ def showboard():
         
 
 def playgame():
+    print("Detta är din spelplan")
     showboard()
     while game:
         turn()
@@ -28,19 +29,39 @@ def playgame():
         switchplayer()
     
 def turn():
-    count = 0
-    showboard()
-    orientation = int(input("Välj en plats mellan 1-9: ")) #check for smaller or bigger than 1 and 9
-    orientation = orientation - 1
+    global orientation
+    '''count = 0'''
+    orientation = intinput() - 1
     if board[orientation] == ' ':
         board[orientation] = player
-        count += 1
-    else:
-        while board[orientation] != ' ':
-            orientation = int(input("Tyvärr är platsen upptagen, välj en annan: "))
-            orientation = orientation - 1
-            board[orientation] = player
+       ''' count += 1'''
+    elif board[orientation] != ' ':
+        orientation = intinput2() - 1
+        board[orientation] = player
+        return player
+    showboard()
     
+    
+def intinput():
+    while True:
+        orientation = input("Ange ett h\u0332e\u0332l\u0332t\u0332a\u0332l\u0332 mellan \u03321 och \u03329: ")
+        if (orientation.isdigit()):
+            orientation = int(orientation)
+            if orientation>0 and orientation<=9:
+                return orientation
+        else:
+            orientation = input("Ett h\u0332e\u0332l\u0332t\u0332a\u0332l\u0332 tack!: ")
+
+def intinput2():
+    while True:
+        orientation = input("Tyvärr är platsen upptagen, välj en annan: ")
+        if (orientation.isdigit()):
+            orientation = int(orientation)
+            if orientation<=9:
+                return orientation
+        else:
+            orientation = input("Ett h\u0332e\u0332l\u0332t\u0332a\u0332l\u0332 tack!: ")
+            
 
 def switchplayer():
     global player
@@ -51,16 +72,15 @@ def switchplayer():
     return
 
 def gameover():
-    winner()
+    win()
     tie()
         
         
-def winner():
+def win():
     global winner
     rowwinner = checkrow()
     columnwinner = checkcolumn()
     diagonalwinner = checkdiagonal()
-    # Get the winner
     if rowwinner:
         winner = rowwinner
     elif columnwinner:
@@ -72,9 +92,9 @@ def winner():
             
 
 def checkrow():
-    row1 = board[0] == board[1] == board[2] != ""
-    row2 = board[3] == board[4] == board[5] != ""
-    row3 = board[6] == board[7] == board[8] != ""
+    row1 = board[0] == board[1] == board[2] != ' '
+    row2 = board[3] == board[4] == board[5] != ' '
+    row3 = board[6] == board[7] == board[8] != ' '
     
     if row1 or row2 or row3:
         global game
@@ -90,9 +110,9 @@ def checkrow():
         return None    
     
 def checkcolumn():
-    column1 = board[0] == board[3] == board[6] != ""
-    column2 = board[1] == board[4] == board[7] != ""
-    column3 = board[2] == board[5] == board[8] != ""
+    column1 = board[0] == board[3] == board[6] != ' '
+    column2 = board[1] == board[4] == board[7] != ' '
+    column3 = board[2] == board[5] == board[8] != ' '
     
     if column1 or column2 or column3:
         global game
@@ -103,13 +123,12 @@ def checkcolumn():
         return board[1] 
     elif column3:
         return board[2] 
-      # Or return None if there was no winner
     else:
         return None    
     
 def checkdiagonal():
-    diagonal1 = board[0] == board[5] == board[8] != ""
-    diagonal2 = board[2] == board[5] == board[7] != ""
+    diagonal1 = board[0] == board[4] == board[7] != ' '
+    diagonal2 = board[2] == board[4] == board[6] != ' '
     
     if diagonal1 or diagonal2:
         global game
@@ -118,45 +137,27 @@ def checkdiagonal():
         return board[0] 
     elif diagonal2:
         return board[2] 
-      # Or return None if there was no winner
     else:
         return None     
         
-#def checkwins = rows, column and diagonal.
+
 
 def tie():
-    # Set global variables
     global game
-    # If board is full
-    if "-" not in board:
+    if ' ' not in board:
         game = False
         return True
-    # Else there is no tie
     else:
         return False
 
 
-def runningcode():
+'''def runningcode():
+Vill du spela med AI eller din kompis?
+Regler för den den väljer
+Spela spelet
+If winner or tie; vill du spela igen så börjas allt om
+
     print("Detta är din spelplan:")
     playgame()
-        
-
-runningcode()
-
-''' Skit
-for i in range(0,9):
-            switchplayer()
-            count = 0
-            showboard()
-            orientation = int(input("Välj en plats mellan 1-9: ")) #check for smaller or bigger than 1 and 9
-            orientation = orientation - 1
-            if board[orientation] == ' ':
-                board[orientation] = player
-                count += 1
-            else:
-                while board[orientation] != ' ':
-                    orientation = int(input("Tyvärr är platsen upptagen, välj en annan: "))
-                orientation = orientation - 1
-                board[orientation] = player
-    else:
-        showboard()    '''
+    '''       
+playgame()
