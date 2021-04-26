@@ -519,7 +519,7 @@ def intinput():
 intinput()
 '''
 
-def emptyspaces():
+'''def emptyspaces():
     emptyspace = []
     for i in range(len(board)):
         if board[i] =='':
@@ -527,3 +527,30 @@ def emptyspaces():
             emptyspace.append((int)(str(i)))
     print(emptyspace)
 emptyspaces()
+'''
+emptyspaces = [0, 1, 2 , 3]
+player = "X"
+board = ["","","","",""]
+
+def computermove():
+    if cornermoves() == False:
+        break
+    if 
+        cornermoves()
+        middlemove()
+        sidemoves()
+        if False:
+            break
+    
+def cornermoves():
+    if 0 in emptyspaces:
+        board[0] = player
+        return False
+
+def middlemove():
+    return None
+
+def sidemoves():
+    return None
+    
+computermove()
