@@ -528,7 +528,8 @@ intinput()
     print(emptyspace)
 emptyspaces()
 '''
-emptyspaces = [0, 1, 2 , 3]
+
+'''emptyspaces = [0, 1, 2 , 3]
 player = "X"
 board = ["","","","",""]
 
@@ -554,3 +555,14 @@ def sidemoves():
     return None
     
 computermove()
+'''
+import os, sys
+
+def playagain():
+    restart = input("Vill du spela igen? J för ja, N för nej: ")
+    if restart == "J" or restart == "j":
+        os.execl(sys.executable, sys.executable, *sys.argv)
+    elif restart == "n" or restart == "N":
+        return None
+playagain()
+    
